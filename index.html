@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Kenneth Zendera — Cloud & AI Governance Engineer. AWS multi-account specialist, ISO 42001 Lead Auditor, based in Cape Town."/>
+  <meta property="og:title" content="Kenneth Zendera — Cloud & AI Governance Engineer"/>
+  <meta property="og:description" content="AWS Solutions Architect Professional · ISO 42001 Lead Auditor · AI Governance"/>
+  <meta property="og:type" content="website"/>
+  <title>Kenneth Zendera — Cloud &amp; AI Governance Engineer</title>
+
+  <!-- Space Grotesk (display) + Inter (body) + JetBrains Mono (code/tags) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+
+  <style>
+    /* ── Reset & base ─────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:      #0B1929;
+      --navy-card: #122540;
+      --navy-alt:  #1A3050;
+      --blue:      #1E4D8C;
+      --cyan:      #00D4FF;
+      --cyan-dim:  rgba(0, 212, 255, 0.15);
+      --text:      #F0F4F8;
+      --text-muted:#8FA8C0;
+      --text-dim:  #5A7A9A;
+      --border:    rgba(0, 212, 255, 0.12);
+      --font-display: 'Space Grotesk', sans-serif;
+      --font-body:    'Inter', sans-serif;
+      --font-mono:    'JetBrains Mono', monospace;
+      --radius:    8px;
+      --max-w:     1100px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--cyan); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    a:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; border-radius: 2px; }
+
+    img { display: block; max-width: 100%; }
+
+    /* ── Layout ───────────────────────────────────── */
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+
+    section { padding: 96px 0; }
+    section + section { border-top: 1px solid var(--border); }
+
+    /* ── Navigation ───────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(11, 25, 41, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: var(--max-w); margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    .nav-logo {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      color: var(--cyan);
+      letter-spacing: 0.02em;
+    }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      font-size: 14px; font-weight: 500;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+
+    /* ── Hero ─────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding-top: 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtle grid background */
+    #hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+
+    /* Cyan radial glow top-right */
+    #hero::after {
+      content: '';
+      position: absolute; top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(0,212,255,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-content { position: relative; z-index: 1; }
+
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--font-mono); font-size: 13px;
+      color: var(--cyan); letter-spacing: 0.08em;
+      margin-bottom: 24px;
+    }
+    .hero-tag::before {
+      content: '>';
+      font-weight: 700;
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(42px, 7vw, 84px);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+    }
+
+    h1 .name-accent { color: var(--cyan); }
+
+    /* Signature element: blinking cursor after the tagline */
+    .hero-tagline {
+      font-family: var(--font-display);
+      font-size: clamp(18px, 2.5vw, 24px);
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-bottom: 40px;
+      line-height: 1.4;
+    }
+    .cursor {
+      display: inline-block;
+      width: 2px; height: 1.1em;
+      background: var(--cyan);
+      margin-left: 4px;
+      vertical-align: middle;
+      animation: blink 1.1s step-end infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+    .hero-meta {
+      font-family: var(--font-mono); font-size: 13px;
+      color: var(--text-dim); margin-bottom: 48px;
+    }
+    .hero-meta span { margin-right: 24px; }
+
+    .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 24px; border-radius: var(--radius);
+      font-family: var(--font-display); font-size: 15px; font-weight: 600;
+      cursor: pointer; transition: all 0.2s;
+      text-decoration: none;
+    }
+    .btn-primary {
+      background: var(--cyan); color: var(--navy);
+    }
+    .btn-primary:hover { background: #33DDFF; text-decoration: none; }
+
+    .btn-ghost {
+      background: transparent; color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-ghost:hover {
+      border-color: var(--cyan); color: var(--cyan);
+      text-decoration: none;
+    }
+
+    /* ── Section headings ─────────────────────────── */
+    .section-label {
+      font-family: var(--font-mono); font-size: 12px;
+      color: var(--cyan); letter-spacing: 0.12em;
+      text-transform: uppercase; margin-bottom: 12px;
+    }
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 700; letter-spacing: -0.02em;
+      margin-bottom: 48px; line-height: 1.2;
+    }
+
+    h3 {
+      font-family: var(--font-display);
+      font-size: 18px; font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    /* ── Certs ────────────────────────────────────── */
+    #certs { background: var(--navy-card); }
+
+    .certs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .cert-card {
+      background: var(--navy-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      display: flex; align-items: center; gap: 16px;
+      transition: border-color 0.2s;
+    }
+    .cert-card:hover { border-color: var(--cyan); }
+
+    .cert-icon {
+      width: 48px; height: 48px; flex-shrink: 0;
+      background: var(--cyan-dim);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+    }
+
+    .cert-body { min-width: 0; }
+    .cert-name {
+      font-family: var(--font-display); font-size: 14px;
+      font-weight: 600; line-height: 1.3;
+      margin-bottom: 4px;
+    }
+    .cert-meta {
+      font-family: var(--font-mono); font-size: 11px;
+      color: var(--text-dim);
+    }
+
+    /* ── What I do ────────────────────────────────── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .skill-card {
+      background: var(--navy-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .skill-card:hover { border-color: var(--cyan); transform: translateY(-2px); }
+
+    .skill-icon {
+      font-size: 28px; margin-bottom: 16px;
+      display: block;
+    }
+
+    .skill-card p {
+      font-size: 14px; color: var(--text-muted); line-height: 1.6;
+    }
+
+    /* ── Projects ─────────────────────────────────── */
+    #projects { background: var(--navy-card); }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .project-card {
+      background: var(--navy-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      display: flex; flex-direction: column;
+      gap: 12px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .project-card:hover { border-color: var(--cyan); transform: translateY(-2px); }
+
+    .project-header {
+      display: flex; align-items: flex-start;
+      justify-content: space-between; gap: 12px;
+    }
+
+    .project-type {
+      font-family: var(--font-mono); font-size: 11px;
+      color: var(--cyan); letter-spacing: 0.08em;
+      text-transform: uppercase; white-space: nowrap;
+      margin-top: 3px;
+    }
+
+    .project-card p {
+      font-size: 14px; color: var(--text-muted);
+      line-height: 1.6; flex: 1;
+    }
+
+    .project-tags {
+      display: flex; flex-wrap: wrap; gap: 8px;
+    }
+    .tag {
+      font-family: var(--font-mono); font-size: 11px;
+      padding: 3px 10px; border-radius: 100px;
+      background: var(--cyan-dim); color: var(--cyan);
+    }
+
+    .project-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-display); font-size: 13px;
+      font-weight: 600; color: var(--cyan);
+      margin-top: auto;
+    }
+    .project-link:hover { text-decoration: underline; }
+
+    .project-link-wip {
+      font-family: var(--font-mono); font-size: 12px;
+      color: var(--text-dim);
+      margin-top: auto;
+    }
+
+    /* ── Stack ────────────────────────────────────── */
+    .stack-groups {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 24px;
+    }
+
+    .stack-group {
+      background: var(--navy-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+
+    .stack-group-label {
+      font-family: var(--font-mono); font-size: 11px;
+      color: var(--cyan); letter-spacing: 0.1em;
+      text-transform: uppercase; margin-bottom: 14px;
+    }
+
+    .stack-items {
+      display: flex; flex-wrap: wrap; gap: 8px;
+    }
+
+    .stack-item {
+      font-family: var(--font-mono); font-size: 12px;
+      padding: 4px 12px; border-radius: var(--radius);
+      background: var(--navy-alt); color: var(--text-muted);
+      border: 1px solid var(--border);
+    }
+
+    /* ── Contact ──────────────────────────────────── */
+    #contact { background: var(--navy-card); text-align: center; }
+
+    #contact h2 { margin-bottom: 16px; }
+    #contact .sub {
+      color: var(--text-muted); margin-bottom: 48px;
+      font-size: 17px; max-width: 520px; margin-left: auto; margin-right: auto;
+    }
+    .contact-links {
+      display: flex; flex-wrap: wrap; gap: 16px;
+      justify-content: center; margin-bottom: 64px;
+    }
+
+    /* ── Footer ───────────────────────────────────── */
+    footer {
+      padding: 32px 24px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      font-family: var(--font-mono); font-size: 12px;
+      color: var(--text-dim);
+    }
+
+    /* ── Responsive ───────────────────────────────── */
+    @media (max-width: 640px) {
+      section { padding: 64px 0; }
+      .nav-links { display: none; }
+      .hero-meta span { display: block; margin-bottom: 8px; }
+    }
+
+    /* ── Reduced motion ───────────────────────────── */
+    @media (prefers-reduced-motion: reduce) {
+      .cursor { animation: none; opacity: 1; }
+      .skill-card, .project-card { transition: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav aria-label="Main navigation">
+    <div class="nav-inner">
+      <span class="nav-logo">kenneth@zendera:~$</span>
+      <ul class="nav-links">
+        <li><a href="#certs">Certifications</a></li>
+        <li><a href="#work">What I do</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#stack">Stack</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section id="hero" aria-label="Introduction">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-tag">Cloud &amp; AI Governance Engineer</div>
+
+        <h1>Kenneth<br/><span class="name-accent">Zendera</span></h1>
+
+        <p class="hero-tagline">
+          AWS infrastructure · ISO 42001 · AI governance<span class="cursor" aria-hidden="true"></span>
+        </p>
+
+        <p class="hero-meta">
+          <span>📍 Cape Town, South Africa</span>
+          <span>🕐 UTC+2</span>
+          <span>🌍 Open to remote · EMEA &amp; US East</span>
+        </p>
+
+        <div class="hero-cta">
+          <a href="#projects" class="btn btn-primary">View projects</a>
+          <a href="#contact" class="btn btn-ghost">Get in touch</a>
+          <a href="https://github.com/kentaz" class="btn btn-ghost" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section id="certs" aria-labelledby="certs-heading">
+    <div class="container">
+      <div class="section-label">Credentials</div>
+      <h2 id="certs-heading">Certifications</h2>
+
+      <div class="certs-grid">
+
+        <a href="https://www.credly.com/users/YOUR-CREDLY-HANDLE" target="_blank" rel="noopener" class="cert-card" style="text-decoration:none;color:inherit;">
+          <div class="cert-icon">☁️</div>
+          <div class="cert-body">
+            <div class="cert-name">AWS Solutions Architect – Professional</div>
+            <div class="cert-meta">Amazon Web Services · 2025</div>
+          </div>
+        </a>
+
+        <a href="https://www.credly.com/users/YOUR-CREDLY-HANDLE" target="_blank" rel="noopener" class="cert-card" style="text-decoration:none;color:inherit;">
+          <div class="cert-icon">🔐</div>
+          <div class="cert-body">
+            <div class="cert-name">AWS Security – Specialty</div>
+            <div class="cert-meta">Amazon Web Services · 2024</div>
+          </div>
+        </a>
+
+        <a href="https://www.credly.com/users/YOUR-CREDLY-HANDLE" target="_blank" rel="noopener" class="cert-card" style="text-decoration:none;color:inherit;">
+          <div class="cert-icon">🏗️</div>
+          <div class="cert-body">
+            <div class="cert-name">AWS Solutions Architect – Associate</div>
+            <div class="cert-meta">Amazon Web Services · 2023</div>
+          </div>
+        </a>
+
+        <a href="https://www.credly.com/users/YOUR-CREDLY-HANDLE" target="_blank" rel="noopener" class="cert-card" style="text-decoration:none;color:inherit;">
+          <div class="cert-icon">⚙️</div>
+          <div class="cert-body">
+            <div class="cert-name">AWS SysOps Administrator – Associate</div>
+            <div class="cert-meta">Amazon Web Services · 2023</div>
+          </div>
+        </a>
+
+        <div class="cert-card">
+          <div class="cert-icon">🤖</div>
+          <div class="cert-body">
+            <div class="cert-name">ISO/IEC 42001:2023 Lead Auditor</div>
+            <div class="cert-meta">AI Management Systems · 2025</div>
+          </div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-icon">🛡️</div>
+          <div class="cert-body">
+            <div class="cert-name">ISO/IEC 27001:2022 Lead Auditor</div>
+            <div class="cert-meta">Information Security · 2025</div>
+          </div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-icon">🔒</div>
+          <div class="cert-body">
+            <div class="cert-name">ISO/IEC 27701:2025 Lead Auditor</div>
+            <div class="cert-meta">Privacy Information Management · 2025</div>
+          </div>
+        </div>
+
+        <a href="https://www.credly.com/users/YOUR-CREDLY-HANDLE" target="_blank" rel="noopener" class="cert-card" style="text-decoration:none;color:inherit;">
+          <div class="cert-icon">🏅</div>
+          <div class="cert-body">
+            <div class="cert-name">Certified in Cybersecurity (CC)</div>
+            <div class="cert-meta">ISC2 · 2024</div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- What I do -->
+  <section id="work" aria-labelledby="work-heading">
+    <div class="container">
+      <div class="section-label">Expertise</div>
+      <h2 id="work-heading">What I do</h2>
+
+      <div class="skills-grid">
+
+        <div class="skill-card">
+          <span class="skill-icon">🏢</span>
+          <h3>AWS multi-account architecture</h3>
+          <p>Landing zones, Control Tower, IAM Identity Center, and Security Hub across multiple AWS Organizations. Multi-region, multi-client infrastructure designed for MSP scale.</p>
+        </div>
+
+        <div class="skill-card">
+          <span class="skill-icon">📦</span>
+          <h3>Infrastructure as Code</h3>
+          <p>Production Terraform — modular, remote-state backed, CI/CD deployed with TFSec, Checkov, and manual approval gates. Idempotent and audit-compliant.</p>
+        </div>
+
+        <div class="skill-card">
+          <span class="skill-icon">🔐</span>
+          <h3>Cloud security & compliance</h3>
+          <p>GuardDuty, Config, Security Hub, KMS, WAF — implemented as code and monitored continuously. ISO 27001 controls mapped to AWS services.</p>
+        </div>
+
+        <div class="skill-card">
+          <span class="skill-icon">🤖</span>
+          <h3>AI governance</h3>
+          <p>EU AI Act risk classification, NIST AI RMF implementation, ISO 42001 AIMS design and audit. Practitioner-built templates and frameworks ready for real engagements.</p>
+        </div>
+
+        <div class="skill-card">
+          <span class="skill-icon">⚙️</span>
+          <h3>Ops automation</h3>
+          <p>Cross-account Bash and Python tooling for CloudWatch alarm management, cost auditing, SSM State Manager deployments, quota monitoring, and account provisioning.</p>
+        </div>
+
+        <div class="skill-card">
+          <span class="skill-icon">🚀</span>
+          <h3>Migrations & cutovers</h3>
+          <p>GCP → AWS workload migrations, RDS major-version upgrades via Blue/Green deployment, S3 + CloudFront OAC cutovers, IAM → IAM Identity Center transitions.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" aria-labelledby="projects-heading">
+    <div class="container">
+      <div class="section-label">Portfolio</div>
+      <h2 id="projects-heading">Projects</h2>
+
+      <div class="projects-grid">
+
+        <div class="project-card">
+          <div class="project-header">
+            <h3>terraform-aws-security-baseline</h3>
+            <span class="project-type">Terraform</span>
+          </div>
+          <p>Reusable module enabling Security Hub (CIS + FSBP), GuardDuty, Config with managed rules, multi-region CloudTrail with KMS, and IAM Access Analyzer — all in one apply.</p>
+          <div class="project-tags">
+            <span class="tag">Terraform</span>
+            <span class="tag">Security Hub</span>
+            <span class="tag">ISO 27001</span>
+          </div>
+          <a href="https://github.com/kentaz/terraform-aws-security-baseline" class="project-link" target="_blank" rel="noopener">
+            View on GitHub →
+          </a>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <h3>ai-governance-toolkit</h3>
+            <span class="project-type">Governance</span>
+          </div>
+          <p>Practitioner templates for EU AI Act risk classification, ISO 42001 clause-by-clause audit, NIST AI RMF implementation, incident response playbook, and vendor assessment questionnaire.</p>
+          <div class="project-tags">
+            <span class="tag">EU AI Act</span>
+            <span class="tag">ISO 42001</span>
+            <span class="tag">NIST AI RMF</span>
+          </div>
+          <a href="https://github.com/kentaz/ai-governance-toolkit" class="project-link" target="_blank" rel="noopener">
+            View on GitHub →
+          </a>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <h3>aws-cwagent-deployer</h3>
+            <span class="project-type">Bash · SSM</span>
+          </div>
+          <p>Self-healing CloudWatch Agent deployment via SSM State Manager. ASG-dimensioned alarms that survive instance replacement — fixes the two most common ways this is done wrong in production.</p>
+          <div class="project-tags">
+            <span class="tag">Bash</span>
+            <span class="tag">SSM</span>
+            <span class="tag">CloudWatch</span>
+          </div>
+          <a href="https://github.com/kentaz/aws-cwagent-deployer" class="project-link" target="_blank" rel="noopener">
+            View on GitHub →
+          </a>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <h3>aws-cost-auditor</h3>
+            <span class="project-type">Bash · FinOps</span>
+          </div>
+          <p>Read-only cross-account cost reporting using Cost Explorer. Month-over-month variance flagging, top-N services per account, EC2 rightsizing summary. CloudShell-native, no profile required.</p>
+          <div class="project-tags">
+            <span class="tag">Bash</span>
+            <span class="tag">AWS CLI</span>
+            <span class="tag">FinOps</span>
+          </div>
+          <a href="https://github.com/kentaz/aws-cost-auditor" class="project-link" target="_blank" rel="noopener">
+            View on GitHub →
+          </a>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <h3>terraform-aws-bedrock-governance</h3>
+            <span class="project-type">Terraform · AI</span>
+          </div>
+          <p>Private, VPC-endpointed Amazon Bedrock with Guardrails, Knowledge Base, and CloudWatch monitoring. Every resource annotated to the ISO 42001 control it satisfies.</p>
+          <div class="project-tags">
+            <span class="tag">Terraform</span>
+            <span class="tag">Bedrock</span>
+            <span class="tag">ISO 42001</span>
+          </div>
+          <a href="https://github.com/kentaz/terraform-aws-bedrock-governance" class="project-link" target="_blank" rel="noopener">
+            View on GitHub →
+          </a>
+        </div>
+
+        <div class="project-card" style="border-style: dashed; opacity: 0.7;">
+          <div class="project-header">
+            <h3>terraform-aws-landing-zone</h3>
+            <span class="project-type">Terraform</span>
+          </div>
+          <p>Reusable landing zone module with Control Tower customisations, OU structure, account vending, and security baselines. In progress.</p>
+          <div class="project-tags">
+            <span class="tag">Terraform</span>
+            <span class="tag">Control Tower</span>
+            <span class="tag">Organizations</span>
+          </div>
+          <span class="project-link-wip">⚙ In progress</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Stack -->
+  <section id="stack" aria-labelledby="stack-heading">
+    <div class="container">
+      <div class="section-label">Tools</div>
+      <h2 id="stack-heading">Tech stack</h2>
+
+      <div class="stack-groups">
+
+        <div class="stack-group">
+          <div class="stack-group-label">Cloud</div>
+          <div class="stack-items">
+            <span class="stack-item">AWS</span>
+            <span class="stack-item">Control Tower</span>
+            <span class="stack-item">IAM Identity Center</span>
+            <span class="stack-item">ECS · EKS</span>
+            <span class="stack-item">RDS</span>
+            <span class="stack-item">Lambda</span>
+            <span class="stack-item">CloudFront</span>
+            <span class="stack-item">Bedrock</span>
+            <span class="stack-item">Azure</span>
+          </div>
+        </div>
+
+        <div class="stack-group">
+          <div class="stack-group-label">Security</div>
+          <div class="stack-items">
+            <span class="stack-item">Security Hub</span>
+            <span class="stack-item">GuardDuty</span>
+            <span class="stack-item">Config</span>
+            <span class="stack-item">IAM</span>
+            <span class="stack-item">KMS</span>
+            <span class="stack-item">WAF</span>
+            <span class="stack-item">CloudTrail</span>
+          </div>
+        </div>
+
+        <div class="stack-group">
+          <div class="stack-group-label">IaC &amp; CI/CD</div>
+          <div class="stack-items">
+            <span class="stack-item">Terraform</span>
+            <span class="stack-item">CloudFormation</span>
+            <span class="stack-item">GitLab CI</span>
+            <span class="stack-item">GitHub Actions</span>
+            <span class="stack-item">TFSec</span>
+            <span class="stack-item">Checkov</span>
+          </div>
+        </div>
+
+        <div class="stack-group">
+          <div class="stack-group-label">Automation</div>
+          <div class="stack-items">
+            <span class="stack-item">Bash</span>
+            <span class="stack-item">Python</span>
+            <span class="stack-item">AWS CLI</span>
+            <span class="stack-item">SSM</span>
+            <span class="stack-item">Docker</span>
+            <span class="stack-item">Kubernetes</span>
+          </div>
+        </div>
+
+        <div class="stack-group">
+          <div class="stack-group-label">Observability</div>
+          <div class="stack-items">
+            <span class="stack-item">CloudWatch</span>
+            <span class="stack-item">CWAgent</span>
+            <span class="stack-item">Prometheus</span>
+            <span class="stack-item">Grafana</span>
+            <span class="stack-item">Kibana</span>
+          </div>
+        </div>
+
+        <div class="stack-group">
+          <div class="stack-group-label">Governance</div>
+          <div class="stack-items">
+            <span class="stack-item">EU AI Act</span>
+            <span class="stack-item">NIST AI RMF</span>
+            <span class="stack-item">ISO 42001</span>
+            <span class="stack-item">ISO 27001</span>
+            <span class="stack-item">CIS Benchmarks</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" aria-labelledby="contact-heading">
+    <div class="container">
+      <div class="section-label">Let's talk</div>
+      <h2 id="contact-heading">Get in touch</h2>
+      <p class="sub">Open to remote infrastructure, cloud security, and AI governance roles or consulting engagements across EMEA and US East timezones.</p>
+
+      <div class="contact-links">
+        <a href="mailto:kentaz23@hotmail.com" class="btn btn-primary">Email me</a>
+        <a href="https://github.com/kentaz" class="btn btn-ghost" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://linkedin.com/in/YOUR-LINKEDIN-HANDLE" class="btn btn-ghost" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.credly.com/users/YOUR-CREDLY-HANDLE" class="btn btn-ghost" target="_blank" rel="noopener">Credly</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      Kenneth Zendera · Cape Town, South Africa · UTC+2 ·
+      <a href="https://github.com/kentaz/portfolio">Source on GitHub</a>
+    </div>
+  </footer>
+
+</body>
+</html>
