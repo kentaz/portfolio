@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Kenneth Zendera — Cloud & AI Governance Engineer. AWS multi-account specialist, ISO 42001 Lead Auditor, based in Cape Town."/>
-  <meta property="og:title" content="Kenneth Zendera — Cloud & AI Governance Engineer"/>
-  <meta property="og:description" content="AWS Solutions Architect Professional · ISO 42001 Lead Auditor · AI Governance"/>
+  <meta name="description" content="Kenneth Tafadzwa Zendera — Cloud & AI Governance Engineer. ISO 42001/27001 Lead Auditor, builder of ComplyAgent, available for EU AI Act consulting and fractional CISO engagements."/>
+  <meta property="og:title" content="Kenneth Tafadzwa Zendera — Cloud & AI Governance Engineer"/>
+  <meta property="og:description" content="Available for EU AI Act consulting · Fractional CISO · Builder of ComplyAgent (EU AI Act audit-ready evidence)"/>
   <meta property="og:type" content="website"/>
-  <title>Kenneth Zendera — Cloud &amp; AI Governance Engineer</title>
+  <title>Kenneth Tafadzwa Zendera — Cloud &amp; AI Governance Engineer</title>
 
   <!-- Space Grotesk (display) + Inter (body) + JetBrains Mono (code/tags) -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -275,6 +275,41 @@
       font-size: 14px; color: var(--text-muted); line-height: 1.6;
     }
 
+    /* ── Services (Available for) ─────────────────── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .service-card {
+      background: var(--navy-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .service-card:hover { border-color: var(--cyan); transform: translateY(-2px); }
+
+    .service-card h3 {
+      font-size: 15px;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .service-card p {
+      font-size: 13px;
+      color: var(--text-muted); line-height: 1.55;
+    }
+
+    .service-card .service-tag {
+      display: inline-block;
+      font-family: var(--font-mono); font-size: 10px;
+      color: var(--cyan); letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
     /* ── Projects ─────────────────────────────────── */
     #projects { background: var(--navy-card); }
 
@@ -407,11 +442,11 @@
   <!-- Navigation -->
   <nav aria-label="Main navigation">
     <div class="nav-inner">
-      <span class="nav-logo">Kenneth Zendera</span>
+      <span class="nav-logo">kenneth.zendera</span>
       <ul class="nav-links">
-        <li><a href="#certs">Certifications</a></li>
-        <li><a href="#work">What I do</a></li>
+        <li><a href="#services">Available for</a></li>
         <li><a href="#projects">Projects</a></li>
+        <li><a href="#certs">Credentials</a></li>
         <li><a href="#stack">Stack</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -422,25 +457,61 @@
   <section id="hero" aria-label="Introduction">
     <div class="container">
       <div class="hero-content">
-        <div class="hero-tag">Cloud &amp; AI Governance Engineer</div>
+        <div class="hero-tag">Available for consulting · fractional CISO · advisory</div>
 
-        <h1>Kenneth<br/><span class="name-accent">Zendera</span></h1>
+        <h1>Kenneth Tafadzwa<br/><span class="name-accent">Zendera</span></h1>
 
         <p class="hero-tagline">
-          AWS infrastructure · ISO 42001 · AI governance<span class="cursor" aria-hidden="true"></span>
+          EU AI Act readiness · AWS governance · building <a href="https://github.com/kentaz/complyagent" style="color:var(--cyan);text-decoration:none;border-bottom:1px dashed var(--cyan);">ComplyAgent</a><span class="cursor" aria-hidden="true"></span>
         </p>
 
         <p class="hero-meta">
           <span>📍 Cape Town, South Africa</span>
           <span>🕐 UTC+2</span>
-          <span>🌍 Open to remote · EMEA &amp; US East</span>
+          <span>🌍 Remote · EMEA &amp; US East</span>
         </p>
 
         <div class="hero-cta">
-          <a href="#projects" class="btn btn-primary">View projects</a>
-          <a href="#contact" class="btn btn-ghost">Get in touch</a>
-          <a href="https://github.com/kentaz" class="btn btn-ghost" target="_blank" rel="noopener">GitHub</a>
+          <a href="mailto:kentaz23@hotmail.com?subject=Consult%20booking" class="btn btn-primary">Book a consult →</a>
+          <a href="Kenneth-Zendera-Resume.pdf" class="btn btn-ghost" target="_blank" rel="noopener">Download resume</a>
+          <a href="https://github.com/kentaz/complyagent" class="btn btn-ghost" target="_blank" rel="noopener">View ComplyAgent</a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Available for -->
+  <section id="services" aria-labelledby="services-heading">
+    <div class="container">
+      <div class="section-label">Engagements</div>
+      <h2 id="services-heading">Available for</h2>
+
+      <div class="services-grid">
+
+        <div class="service-card">
+          <span class="service-tag">High demand</span>
+          <h3>EU AI Act readiness assessments</h3>
+          <p>Gap analysis, control mapping, and evidence-collection strategy for SaaS companies deploying AI in the EU. Built around the August 2, 2026 enforcement deadline.</p>
+        </div>
+
+        <div class="service-card">
+          <span class="service-tag">Fractional</span>
+          <h3>Fractional CISO</h3>
+          <p>Interim security leadership for Series A–C startups, typically 3–6 month engagements. ISO 27001, SOC 2, AI governance — whatever the next 90 days demand.</p>
+        </div>
+
+        <div class="service-card">
+          <span class="service-tag">Architecture</span>
+          <h3>AWS multi-account &amp; security baseline</h3>
+          <p>Landing zones, Control Tower, IAM Identity Center, Security Hub, GuardDuty. Production Terraform with TFSec / Checkov gating. Built to be audited.</p>
+        </div>
+
+        <div class="service-card">
+          <span class="service-tag">Governance</span>
+          <h3>AI governance programme design</h3>
+          <p>ISO 42001 AIMS design, NIST AI RMF alignment, vendor risk assessment, incident response playbook. Templates and frameworks — not just slides.</p>
+        </div>
+
       </div>
     </div>
   </section>
@@ -613,6 +684,40 @@
 
       <div class="projects-grid">
 
+        <div class="project-card" style="border-color: rgba(0,212,255,0.35);">
+          <div class="project-header">
+            <h3>complyagent</h3>
+            <span class="project-type">Product · Open source</span>
+          </div>
+          <p>EU AI Act audit-ready evidence collection for AI agent deployments. Cryptographically signed audit trails, real-time OPA policy evaluation, and PDF reports you can hand to a regulator. Python SDK + MCP integration.</p>
+          <div class="project-tags">
+            <span class="tag">EU AI Act</span>
+            <span class="tag">FastAPI</span>
+            <span class="tag">OPA · Rego</span>
+            <span class="tag">MCP</span>
+            <span class="tag">Ed25519</span>
+          </div>
+          <a href="https://github.com/kentaz/complyagent" class="project-link" target="_blank" rel="noopener">
+            View on GitHub →
+          </a>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <h3>ai-governance-toolkit</h3>
+            <span class="project-type">Governance</span>
+          </div>
+          <p>Practitioner templates for EU AI Act risk classification, ISO 42001 clause-by-clause audit, NIST AI RMF implementation, incident response playbook, and vendor assessment questionnaire.</p>
+          <div class="project-tags">
+            <span class="tag">EU AI Act</span>
+            <span class="tag">ISO 42001</span>
+            <span class="tag">NIST AI RMF</span>
+          </div>
+          <a href="https://github.com/kentaz/ai-governance-toolkit" class="project-link" target="_blank" rel="noopener">
+            View on GitHub →
+          </a>
+        </div>
+
         <div class="project-card">
           <div class="project-header">
             <h3>terraform-aws-security-baseline</h3>
@@ -631,16 +736,16 @@
 
         <div class="project-card">
           <div class="project-header">
-            <h3>ai-governance-toolkit</h3>
-            <span class="project-type">Governance</span>
+            <h3>terraform-aws-bedrock-governance</h3>
+            <span class="project-type">Terraform · AI</span>
           </div>
-          <p>Practitioner templates for EU AI Act risk classification, ISO 42001 clause-by-clause audit, NIST AI RMF implementation, incident response playbook, and vendor assessment questionnaire.</p>
+          <p>Private, VPC-endpointed Amazon Bedrock with Guardrails, Knowledge Base, and CloudWatch monitoring. Every resource annotated to the ISO 42001 control it satisfies.</p>
           <div class="project-tags">
-            <span class="tag">EU AI Act</span>
+            <span class="tag">Terraform</span>
+            <span class="tag">Bedrock</span>
             <span class="tag">ISO 42001</span>
-            <span class="tag">NIST AI RMF</span>
           </div>
-          <a href="https://github.com/kentaz/ai-governance-toolkit" class="project-link" target="_blank" rel="noopener">
+          <a href="https://github.com/kentaz/terraform-aws-bedrock-governance" class="project-link" target="_blank" rel="noopener">
             View on GitHub →
           </a>
         </div>
@@ -675,36 +780,6 @@
           <a href="https://github.com/kentaz/aws-cost-auditor" class="project-link" target="_blank" rel="noopener">
             View on GitHub →
           </a>
-        </div>
-
-        <div class="project-card">
-          <div class="project-header">
-            <h3>terraform-aws-bedrock-governance</h3>
-            <span class="project-type">Terraform · AI</span>
-          </div>
-          <p>Private, VPC-endpointed Amazon Bedrock with Guardrails, Knowledge Base, and CloudWatch monitoring. Every resource annotated to the ISO 42001 control it satisfies.</p>
-          <div class="project-tags">
-            <span class="tag">Terraform</span>
-            <span class="tag">Bedrock</span>
-            <span class="tag">ISO 42001</span>
-          </div>
-          <a href="https://github.com/kentaz/terraform-aws-bedrock-governance" class="project-link" target="_blank" rel="noopener">
-            View on GitHub →
-          </a>
-        </div>
-
-        <div class="project-card" style="border-style: dashed; opacity: 0.7;">
-          <div class="project-header">
-            <h3>terraform-aws-landing-zone</h3>
-            <span class="project-type">Terraform</span>
-          </div>
-          <p>Reusable landing zone module with Control Tower customisations, OU structure, account vending, and security baselines. In progress.</p>
-          <div class="project-tags">
-            <span class="tag">Terraform</span>
-            <span class="tag">Control Tower</span>
-            <span class="tag">Organizations</span>
-          </div>
-          <span class="project-link-wip">⚙ In progress</span>
         </div>
 
       </div>
@@ -800,13 +875,14 @@
   <!-- Contact -->
   <section id="contact" aria-labelledby="contact-heading">
     <div class="container">
-      <div class="section-label">Let's talk</div>
-      <h2 id="contact-heading">Get in touch</h2>
-      <p class="sub">Open to remote infrastructure, cloud security, and AI governance roles or consulting engagements across EMEA and US East timezones.</p>
+      <div class="section-label">Engagements</div>
+      <h2 id="contact-heading">Let's work together</h2>
+      <p class="sub">EU AI Act readiness assessments, fractional CISO work, cloud security architecture, and AI governance programme design. Remote across EMEA and US East.</p>
 
       <div class="contact-links">
-        <a href="mailto:kentaz23@hotmail.com" class="btn btn-primary">Email me</a>
-        <a href="https://github.com/kentaz" class="btn btn-ghost" target="_blank" rel="noopener">GitHub</a>
+        <a href="mailto:kentaz23@hotmail.com?subject=Engagement%20enquiry" class="btn btn-primary">Email me</a>
+        <a href="Kenneth-Zendera-Resume.pdf" class="btn btn-ghost" target="_blank" rel="noopener">Download resume (PDF)</a>
+        <a href="https://github.com/kentaz/complyagent" class="btn btn-ghost" target="_blank" rel="noopener">ComplyAgent</a>
         <a href="https://linkedin.com/in/kenneth-tafadzwa-z-57954467" class="btn btn-ghost" target="_blank" rel="noopener">LinkedIn</a>
         <a href="https://www.credly.com/users/kenneth-zendera" class="btn btn-ghost" target="_blank" rel="noopener">Credly</a>
       </div>
@@ -815,7 +891,7 @@
 
   <footer>
     <div class="container">
-      Kenneth Zendera · Cape Town, South Africa · UTC+2 ·
+      Kenneth Tafadzwa Zendera · Cape Town, South Africa · UTC+2 ·
       <a href="https://github.com/kentaz/portfolio">Source on GitHub</a>
     </div>
   </footer>
